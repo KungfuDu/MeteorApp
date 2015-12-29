@@ -1,0 +1,32 @@
+
+
+
+<template name='chat'>
+  <div class="_chatbox">
+    <div id="" class="_chatMenu">
+    <a class="_menuArrow" id="chatArrowRight" href="#"><span class="glyphicon glyphicon-menu-right"></span> </a>
+    </div>
+    <div id='messages' class="_messagesbox">
+      {{#each messages}}
+        {{>chatMessage}}
+      {{/each}}
+    </div>
+    {{> chatForm}}
+  </div>
+</template>
+
+<template name='chatMessage'>
+
+  <div id="messages" class="_message">
+    <b>{{username}}:</b> {{message}}
+  </div>
+</template>
+
+<template name="chatForm">
+  <div class="_chatFormBox">
+    <form id="chatForm" action="" method="post">
+      <input class="_chatFormInput" type="text" name="" value="" required="true" placeholder="Type your message" pattern=".*[^ ].*" autocomplete="off">
+    </form>
+  </div>
+
+</template>
