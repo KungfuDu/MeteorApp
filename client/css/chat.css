@@ -2,15 +2,15 @@
 
 
 ._chatbox{
-  top:70px;
+  top: 0;
   width: 20%;
   bottom: 0;
   right: 0;
-
+  position: absolute;
   text-align: center;
   margin:auto;
   background-color: rgba(64,46,61,.55);
-  position: absolute;
+
 
 
 }
@@ -20,7 +20,7 @@
 
 }
 ._menuArrow{
-  margin-left: -15px;
+
   color: white;
 }
 

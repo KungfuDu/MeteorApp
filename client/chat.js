@@ -1,12 +1,15 @@
 chatStream = new Meteor.Stream('chat');
 chatCollection = new Meteor.Collection(null);
-
+Meteor.subscribe("allUsers");
 
 chatStream.on('chat', function(res) {
-  var user = Meteor.subscribe("findUser");
+
+
+  console.log($(this)[0].userId);
+  var user = Meteor.users.findOne({_id:$(this)[0].userId});
   console.log(user);
   chatCollection.insert({
-    username: res.username,
+    username: user.username,
     message: res.message
   });
   $('#messages').animate({ scrollTop: $('#messages')[0].scrollHeight }, "slow");
@@ -38,7 +41,7 @@ Template.chatForm.events({
       message: message
     });
     console.log(Meteor.user());
-    chatStream.emit('chat', {message: message , username:Meteor.user().username });
+    chatStream.emit('chat', {message: message , username:Meteor.user() });
      $('#chatForm input').val('');
      $('#messages').animate({ scrollTop: $('#messages')[0].scrollHeight }, "slow");
   }

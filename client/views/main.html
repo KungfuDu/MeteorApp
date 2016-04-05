@@ -23,19 +23,25 @@
           </div>
         </div>
 
-        <div id="body_content" class="_body_content {{# if hideChat}} full {{else}} notfull {{/if}}" >
+        <div id="body_content" class="_body_content" >
+          
 
-          <div class="_content_main">
-            <div id="name" class="_workinProgress">
-              <h1>Work in Progress</h1>
-            </div>
-          </div>
-           {{# if hideChat}}  <a id="chatArrowLefts" class="_menuArrow" href="#"><span class="glyphicon glyphicon-menu-left"></span> </a>  {{else}}{{> chat}} {{/if}}
+          <div class="_content_main {{# if hideChat}} full {{else}} notfull {{/if}}">
 
-      </div>
+           {{> videoPlayer}}
+           <div class="_arrow">
+             <a id="chatArrowLefts" class="_menuArrow" href="#" style="text-align : right;"><span class="glyphicon glyphicon-menu-left"></span> </a>
+           </div>
+
+
+           </div>
+           {{#unless hideChat}}
+           {{> chat}}
+           {{/unless}}
+
+        </div>
 
 {{/if}}
-
 
 
 

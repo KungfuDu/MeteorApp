@@ -8,6 +8,6 @@ chatStream.permissions.read(function() {
   return true;
 });
 
-Meteor.publish('findUser', function(){
-
+Meteor.publish('allUsers', function() {
+    return  Meteor.users.find({},{fields: {'username': 1}});
 });
