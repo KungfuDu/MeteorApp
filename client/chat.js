@@ -7,7 +7,7 @@ chatStream.on('chat', function(res) {
 
   console.log($(this)[0].userId);
   var user = Meteor.users.findOne({_id:$(this)[0].userId});
-  console.log(user);
+
   chatCollection.insert({
     username: user.username,
     message: res.message

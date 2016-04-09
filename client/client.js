@@ -2,6 +2,7 @@
 
 //-------------------------
 
+
 Template.mainLayout.helpers({
   "hideChat":function(){
     return Session.get('hideChat');
@@ -20,17 +21,7 @@ Template.mainLayout.events({
 
 
 // VIDEO SEARCH BOX ---------------------------
-Template.videoPlayer.helpers({
-  "videoURL": function(){
-    return Session.get('currentUrl');
-  }
-});
-Template.videoPlayer.events({
-  "keyup #urlInput": function(){
-       console.log("aea");
-       Session.set('currentUrl',$('#urlInput').val());
-  }
-});
+
 
 // Contenders -----------------------------------------------
 

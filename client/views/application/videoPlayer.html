@@ -1,14 +1,21 @@
 <template name="videoPlayer">
 
-    <pre>
-      {{ videoURL}}
-    </pre>
+<pre>
+    State : {{room.state}}  // url : {{room.url}} // video time :  {{room.videoTime}} // serv time : {{ myTime }}
+</pre>
+
+
     <div class="_researchBox">
+      <input  id="progress-bar" type="range"  value="0">
+      <br>
        <input id="urlInput" type="text" name="name" value="">
+       <button id="buttonPlay" type="button" name="play">Play</button>
+       <button id="buttonPause" type="button" name="pause">Pause</button>
+
     </div>
     <div class="_video_player">
-
-      <iframe width="100%" height="100%" src="{{#if videoURL}}{{videoURL}}?autoplay=1 {{/ if}}" frameborder="0" allowfullscreen></iframe>
-    </div>
+      <iframe id="player" allowfullscreen="allowfullscreen" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/{{room.url}}?widget_referrer=http%3A%2F%2Flocalhost%3A3000%2Fhome&enablejsapi=1&origin=http%3A%2F%2Flocalhost%3A3000&controls=0&disablekb=1" frameborder="0" >
+      </iframe>
+   </div>
 
 </template>
