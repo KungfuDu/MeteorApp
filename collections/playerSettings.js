@@ -4,7 +4,7 @@ Settings = new Mongo.Collection("settings");
 Meteor.methods({
   initRoom: function(){
     var room = Settings.findOne({param:"default"});
-
+    var serv = Settings.findOne({param:"server"});
     if (room) {
       Settings.update({param:"default"},{$set:{url: '' ,videoTime : 0, state : "stop", timeServ : null,  nextVideos : [] }});
 
@@ -12,6 +12,12 @@ Meteor.methods({
       Settings.insert({param:"default", url : '', videoTime : 0, state : "stop", timeServ : null , nextVideos : [] });
 
     }
+    if(serv){
+      Settings.update({param:"server"} ,{$set:{ state : 'ok'}});
+    }else{
+      Settings.insert({param:"server" , state:'ok'});
+    }
+    console.log(Settings.findOne({param:"server"}));
   },
   startWatching:function(){
    // if room exist
@@ -32,10 +38,16 @@ Meteor.methods({
     }
   },
   changeTime:function(time){
-    Settings.update({param:"default"},{$set:{videoTime : time}});
+    if(Settings.findOne({param:"default"}).state === 'play' ){
+       Settings.update({param:"default"},{$set:{videoTime : time, timeServ:  new Date().getTime()}});
+    }else if (Settings.findOne({param:"default"}).state === 'pause') {
+      Settings.update({param:"default"},{$set:{videoTime : time, timeServ: null}});
+    }
+
 
   },
   getCurrentTime : function(){
+    console.log(getTimeSpend(Settings.findOne({param:"default"})));
     return  getTimeSpend(Settings.findOne({param:"default"}));
 
   },
@@ -45,7 +57,7 @@ Meteor.methods({
         console.log(error);
       }
       else
-        console.log(res.data.author_name);
+
         Settings.update({param:"default"},{ $push: { nextVideos: {url : obj.url , id : YouTubeGetID(obj.url) , title: res.data.title, author: res.data.author_name } }});
         var room = Settings.findOne({param:"default"});
         var nextVideo = room.nextVideos[0];
@@ -57,13 +69,24 @@ Meteor.methods({
 
   },
   finishVideo:function(){
-    var room = Settings.findOne({param:"default"});
-    var nextVideo = room.nextVideos[0];
-    if(nextVideo !== undefined){
-      Settings.update({param:"default"},{ $set: { url : '', state : 'finish', videoTime : 0 , timeServ : null } });
-    }else{
-        Settings.update({param:"default"},{ $set: { url : '', state : 'finish', videoTime : 0 , timeServ : null }});
+
+    var serv = Settings.findOne({param:"server"});
+    console.log(serv);
+
+    if(Settings.findOne({param:"server"}).state == 'ok'  ){
+      Settings.update({param:"server"},{ $set: { state : 'wait'}});
+      var room = Settings.findOne({param:"default"});
+      var nextVideo = room.nextVideos[0];
+      if(nextVideo !== undefined){
+              Settings.update({param:"default"},{$set:{url : nextVideo.id ,state : "play" , videoTime : 0, timeServ : new Date().getTime()},
+                                                 $pull : {nextVideos : nextVideo}});
+      }
+      Meteor.setTimeout(function () {
+        Settings.update({param:"server"},{ $set: { state : 'ok'}});
+      }, 3000);
+      console.log(Settings.findOne({param:"server"}));
     }
+
   },
   newTime:function(){
 

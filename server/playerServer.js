@@ -1,4 +1,4 @@
 
 Meteor.publish('PlayerSettings', function() {
-    return  Settings.find({});
+    return  Settings.find({param : 'default'});
 });

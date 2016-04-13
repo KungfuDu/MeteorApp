@@ -20,24 +20,30 @@ $buttonSize: 50px;
     width : $playerWidth;
     margin: auto;
     background-color: $bgc;
+    .buttons-controls{
+      display: inline-block;
+      margin-right: 20%;
 
-    .player-button{
-        background-color: transparent;
-        color: $inputColor;
-        width: $buttonSize;
-        height: $buttonSize;
-        margin: 10px 20px;
-        border-radius: 50%;
-        border: 1px solid $inputColor;
+      .player-button{
+          background-color: transparent;
+          color: $inputColor;
+          width: $buttonSize;
+          height: $buttonSize;
+          margin: 10px 20px;
+          border-radius: 50%;
+          border: 1px solid $inputColor;
 
-        -webkit-appearance:none;
-        outline: none;
-        &:hover{
-          color: $bgc;
-          background-color: $inputColor;
-        }
+          -webkit-appearance:none;
+          outline: none;
+          &:hover{
+            color: $bgc;
+            background-color: $inputColor;
+          }
 
+      }
     }
+
+
   }
 }
 ._search{
@@ -66,6 +72,7 @@ $buttonSize: 50px;
     color: $inputColor;
     padding: 2px 10px;
     border: 1px solid $inputColor;
+    border-radius: 10px;
 
     -webkit-appearance:none;
     outline: none;
@@ -120,15 +127,42 @@ $buttonSize: 50px;
         @content;
     }
 }
+.sound-panel{
+  width: 20%;
+  float: left;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  .sound-icon{
+    padding-top:10px;
+    margin: auto;
+    width: 5%;
+    color: white;
+    &.up{
+      font-size: 20px;
+    }
+  }
+  .input-sound {
 
+    margin: auto;
+    width :80%;
+
+  }
+}
+
+
+
+.input-progress{
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  min-width: 11em;
+}
 
 
 .input-range {
 
-    display: flex;
-    flex-flow: row nowrap;
-    width: 100%;
-    min-width: 11em;
+
 
 
     input[type="range"] {

@@ -79,6 +79,16 @@ Template.videoPlayer.events({
     }
 
   },
+  "touchend, mouseup #volume-bar" : function(e){
+    var bar = e.target.value;
+    if(player){
+      if(bar !== ''){
+        player.setVolume(bar);
+
+      }
+    }
+
+  },
   "load #player": function(e){
 
     e.preventDefault();
@@ -213,6 +223,7 @@ function updateSettings(settings){
 
 onPlayerReady = function(e) {
   e.target.playVideo();
+  e.target.setVolume(50);
   setUpSettings(e);
 
 
@@ -222,7 +233,8 @@ onStateChange = function (event) {
   switch (event.data) {
     case YT.PlayerState.ENDED:
       console.log('ENDED');
-      Meteor.call('nextVideo');
+        Meteor.call('finishVideo');
+
       break;
     case YT.PlayerState.PAUSED:
       console.log('PAUSED');
