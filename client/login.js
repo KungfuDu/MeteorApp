@@ -42,7 +42,7 @@ Template.login.events({
 			password,
 			function(err) {
 				if (err) {
-					alert(err.reason)
+					alert(err.reason);
 				}
         else{
           Router.go('/home');
@@ -70,7 +70,7 @@ Template.register.events({
 		};
 		Accounts.createUser(user, function(err) {
 			if (err) {
-				alert(err.reason)
+				alert(err.reason);
 			}
       else{
         Meteor.loginWithPassword(
@@ -78,7 +78,7 @@ Template.register.events({
           password,
           function(err) {
             if (err) {
-              alert(err.reason)
+              console.log(err.reason);              
             }
             else{
               Router.go('/home');

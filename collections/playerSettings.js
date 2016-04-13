@@ -2,13 +2,14 @@ Settings = new Mongo.Collection("settings");
 
 
 Meteor.methods({
-  setNextVideo: function(obj){
-    console.log(Meteor.user().username);
-    if (Settings.findOne({param:"default"})) {
-      Settings.update({param:"default"},{$set:{url: YouTubeGetID(obj.url) ,videoTime : 0, state : "stop", timeServ : null}});
+  initRoom: function(){
+    var room = Settings.findOne({param:"default"});
+
+    if (room) {
+      Settings.update({param:"default"},{$set:{url: '' ,videoTime : 0, state : "stop", timeServ : null,  nextVideos : [] }});
 
     }else {
-      Settings.insert({param:"default", url : YouTubeGetID(obj.url), videoTime : 0, state : "stop", timeServ : null });
+      Settings.insert({param:"default", url : '', videoTime : 0, state : "stop", timeServ : null , nextVideos : [] });
 
     }
   },
@@ -21,7 +22,7 @@ Meteor.methods({
    //   add user //  as admin
  },
   playVideo:function(){
-    if(Settings.findOne({param:"default"}).state === 'stop' || Settings.findOne({param:"default"}).state === 'pause'){
+    if(Settings.findOne({param:"default"}).state === 'stop' || Settings.findOne({param:"default"}).state === 'pause' ||  Settings.findOne({param:"default"}).state === 'finish' ){
       Settings.update({param:"default"},{$set:{state : "play" , timeServ : new Date().getTime()}});
     }
   },
@@ -34,24 +35,52 @@ Meteor.methods({
     Settings.update({param:"default"},{$set:{videoTime : time}});
 
   },
-  stopVideo:function(){
+  getCurrentTime : function(){
+    return  getTimeSpend(Settings.findOne({param:"default"}));
 
+  },
+  addVideo : function(obj){
+    var res   = HTTP.call("GET", "https://noembed.com/embed?url=https://www.youtube.com/watch?v="+YouTubeGetID(obj.url), function(error,res){
+      if(error){
+        console.log(error);
+      }
+      else
+        console.log(res.data.author_name);
+        Settings.update({param:"default"},{ $push: { nextVideos: {url : obj.url , id : YouTubeGetID(obj.url) , title: res.data.title, author: res.data.author_name } }});
+        var room = Settings.findOne({param:"default"});
+        var nextVideo = room.nextVideos[0];
+        if(room.url === ""){
+          Settings.update({param:"default"},{$set:{url : nextVideo.id ,state : "play" , videoTime : 0, timeServ : new Date().getTime()},
+                                             $pull : {nextVideos : nextVideo}});
+        }
+    });
+
+  },
+  finishVideo:function(){
+    var room = Settings.findOne({param:"default"});
+    var nextVideo = room.nextVideos[0];
+    if(nextVideo !== undefined){
+      Settings.update({param:"default"},{ $set: { url : '', state : 'finish', videoTime : 0 , timeServ : null } });
+    }else{
+        Settings.update({param:"default"},{ $set: { url : '', state : 'finish', videoTime : 0 , timeServ : null }});
+    }
   },
   newTime:function(){
 
   },
   nextVideo:function(){
 
+    var room = Settings.findOne({param:"default"});
+    var nextVideo = room.nextVideos[0];
+    if(nextVideo !== undefined){
+            Settings.update({param:"default"},{$set:{url : nextVideo.id ,state : "play" , videoTime : 0, timeServ : new Date().getTime()},
+                                               $pull : {nextVideos : nextVideo}});
+    }
+
   },
   getVideoTime : function(){
 
-  },
-  getCurrentTime : function(){
-
-    return  getTimeSpend(Settings.findOne({param:"default"}));
-
-
-  },
+  }
 
 });
 

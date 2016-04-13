@@ -1,17 +1,22 @@
 body{
-	background-image: url('images/paris.jpg');
-	background-size: cover;
+
   overflow: hidden;
+	background:  url('images/paris.jpg') no-repeat center fixed;
+  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+  background-size: cover;
+
 }
 body:before {
     content: '';
-    background: url('images/paris.jpg') fixed 0 0;
+    background: url('images/paris.jpg') no-repeat center;
     -webkit-filter: blur(5px);
            -moz-filter: blur(5px);
             -ms-filter: blur(5px);
              -o-filter: blur(5px);
                 filter: blur(5px);
     position: absolute;
+		background-repeat: no-repeat;
+		background-size: cover;
     top: 0;
     bottom:0px;
     left: 0;
@@ -46,7 +51,7 @@ body:before {
 	position: relative;
   float: left;
   text-align:center;
-	background: rgba(196,116,32,.2);
+
 	height: 100%;
 }
 
@@ -57,13 +62,7 @@ body:before {
   width: 80%;
 
 }
-._video_player{
-	text-align: center;
-	margin: auto;
-	width: 80%;
 
-
-}
 ._workinProgress{
   background-color: rgba(82,82,82,.20);
   height: 700px;

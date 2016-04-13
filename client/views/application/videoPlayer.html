@@ -1,21 +1,55 @@
 <template name="videoPlayer">
 
-<pre>
+<!-- <pre>
     State : {{room.state}}  // url : {{room.url}} // video time :  {{room.videoTime}} // serv time : {{ myTime }}
-</pre>
+</pre> -->
 
+    <div class="_video_player">
 
-    <div class="_researchBox">
-      <input  id="progress-bar" type="range"  value="0">
-      <br>
-       <input id="urlInput" type="text" name="name" value="">
-       <button id="buttonPlay" type="button" name="play">Play</button>
-       <button id="buttonPause" type="button" name="pause">Pause</button>
+    <div id="player">
 
     </div>
-    <div class="_video_player">
-      <iframe id="player" allowfullscreen="allowfullscreen" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/{{room.url}}?widget_referrer=http%3A%2F%2Flocalhost%3A3000%2Fhome&enablejsapi=1&origin=http%3A%2F%2Flocalhost%3A3000&controls=0&disablekb=1" frameborder="0" >
-      </iframe>
+
+
+
+   <div class="_controller">
+     <div class="input-range minimal">
+       <input  id="progress-bar" class="" type="range"  value="0">
+     </div>
+     <br>
+      <button id="initRoom" class="player-button" type="button" name="name" value=""><span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></button>
+      <button id="buttonPlay" class="player-button" type="button" name="play"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+      <button id="buttonPause" class="player-button" type="button" name="pause"><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></button>
+      <button id="buttonNext" class="player-button" type="button" name="pause"><span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span></button>
+
    </div>
+
+   </div>
+   <div class="_search">
+
+
+       <input id="nextInput" type="text" class="input-text" name="nextVideo" value="" placeholder="https://www.youtube.com/watch?v...">
+       <button id="buttonAdd" class="form-button is-hide">Add to playlist</button>
+       <div class="playlist">
+         <h3>Next videos :</h3>
+         {{#each room.nextVideos }}
+
+         <div class="video-list">
+           <img class="video-img" src="http://img.youtube.com/vi/{{id}}/default.jpg" data-video-id="h14wr4pXZFk">
+           <div class="video-info">
+             <div> {{title}}</div>
+             <div> {{author}}</div>
+           </div>
+         </div>
+
+
+
+         {{/each}}
+       </div>
+
+     </div>
+
+
+
 
 </template>
