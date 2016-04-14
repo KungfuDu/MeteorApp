@@ -33,16 +33,18 @@ Template.chat.events({
 
 
 Template.chatForm.events({
-  submit: function(event) {
+  'submit #chatForm': function(event) {
     event.preventDefault();
-    var message = $('#chatForm input').val();
-    chatCollection.insert({
-      username: 'me',
-      message: message
-    });
-    console.log(Meteor.user());
-    chatStream.emit('chat', {message: message , username:Meteor.user() });
-     $('#chatForm input').val('');
-     $('#messages').animate({ scrollTop: $('#messages')[0].scrollHeight }, "slow");
+    if ($('#chatForm input').val().trim() !== ""){
+      var message = $('#chatForm input').val();
+      chatCollection.insert({
+        username: 'me',
+        message: message
+      });
+      console.log(Meteor.user());
+      chatStream.emit('chat', {message: message , username:Meteor.user() });
+      $('#chatForm input').val('');
+      $('#messages').animate({ scrollTop: $('#messages')[0].scrollHeight }, "slow");
+    }
   }
 });

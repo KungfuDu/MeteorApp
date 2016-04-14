@@ -4,12 +4,13 @@
 ._chatbox{
   top: 0;
   width: 20%;
-  bottom: 0;
+  bottom: 10px;
   right: 0;
   position: absolute;
   text-align: center;
   margin:auto;
   background-color: rgba(64,46,61,.55);
+  padding-bottom: 75px;
 
 
 
@@ -32,8 +33,10 @@
  ._messagesbox{
    height: 100%;
    padding: 10px;
-   padding-bottom: 50px;
-   overflow-y: auto;
+   overflow-y: scroll;
+   margin-bottom: 300px;
+
+
 
  }
  ._message{

@@ -9,6 +9,7 @@ Template.videoPlayer.created = function(){
   tag.src = "https://www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  console.log('ok wesh');
 };
 
 
@@ -114,50 +115,10 @@ Template.videoPlayer.helpers({
 });
 
 function updateSettings(settings){
+      console.log(settings);
 
-
-      //  if(settings.url !== localSettings.url){
-       //
-      //     if(settings.url !== ""){
-      //           if(player){
-       //
-      //               player.loadVideoById(settings.url);
-      //           }else{
-       //
-      //             onYouTubeIframeAPIReady = function(){
-       //
-       //
-      //                 player = new YT.Player('player', {
-      //                   videoId: settings.url,
-      //                   playerVars: {'controls': 1 },
-      //                   events: {
-      //                     'onStateChange': onStateChange,
-      //                     'onReady' : onPlayerReady,
-      //                   }
-      //                 });
-       //
-      //                 rdy = false;
-      //             };
-       //
-       //
-      //             if(rdy){
-       //
-      //               player = new YT.Player('player', {
-      //                 videoId: settings.url,
-      //                 playerVars: {'controls': 1 },
-      //                 events: {
-      //                   'onStateChange': onStateChange,
-      //                   'onReady' : onPlayerReady,
-      //                 }
-      //               });
-       //
-      //             }
-      //             time_update = Meteor.setInterval(updateBar, 1000);
-       //
-      //           }
-      //        }
-      //     }
       if(player){
+          console.log('ya un  player');
         if( localSettings.url !== settings.url){
           player.loadVideoById(settings.url);
         }
@@ -186,13 +147,14 @@ function updateSettings(settings){
 
 
       }else{
-        //console.log(YT);
+        console.log('pas de player');
 
 
 
           if(rdy){
+          console.log('sans onYouTubeIframeAPIReady');
           player = new YT.Player('player', {
-                 videoId: localSettings.url,
+                 videoId: settings.url,
                  playerVars: {'controls': 0 },
                  events: {
                    'onStateChange': onStateChange,
@@ -203,18 +165,46 @@ function updateSettings(settings){
                 time_update = Meteor.setInterval(updateBar, 1000);
               }
         }else {
+
           onYouTubeIframeAPIReady = function(){
-            player = new YT.Player('player', {
-                   videoId: localSettings.url,
-                   playerVars: {'controls': 0 },
-                   events: {
-                     'onStateChange': onStateChange,
-                     'onReady' : onPlayerReady,
-                   }
-                 });
-            time_update = Meteor.setInterval(updateBar, 1000);
-            rdy=true;
-          };
+            console.log('onYouTubeIframeAPIReady');
+            if(!player){
+              player = new YT.Player('player', {
+                     videoId: localSettings.url,
+                     playerVars: {'controls': 0 },
+                     events: {
+                       'onStateChange': onStateChange,
+                       'onReady' : onPlayerReady,
+                     }
+                   });
+            }
+
+              rdy=true;
+            };
+
+
+            try {
+                  console.log('on essaye');
+                  if (YT && !player){
+                    console.log('paseer aessaye');
+                    console.log(settings);
+                    player = new YT.Player('player', {
+                           videoId: settings.url,
+                           playerVars: {'controls': 0 },
+                           events: {
+                             'onStateChange': onStateChange,
+                             'onReady' : onPlayerReady,
+                           }
+                         });
+                         console.log(player);
+                    rdy=true;
+                  }
+              }
+              catch(err) {
+                  console.log(err);
+              }
+              time_update = Meteor.setInterval(updateBar, 1000);
+
         }
 
   }
