@@ -78,7 +78,7 @@ Template.register.events({
           password,
           function(err) {
             if (err) {
-              console.log(err.reason);              
+              console.log(err.reason);
             }
             else{
               Router.go('/home');

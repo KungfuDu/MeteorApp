@@ -51,7 +51,10 @@ body:before {
 	position: relative;
   float: left;
   text-align:center;
-
+  display: flex;
+  flex-flow: wrap;
+  align-items: flex-start;
+  align-content:flex-start;
 	height: 100%;
 }
 
