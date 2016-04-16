@@ -1,0 +1,169 @@
+$duration : 0.5s;
+
+$bgc :  rgba(54,36,51,.40);
+$color: #D35400;
+
+._modalLogin{
+	padding: 20px 20px;
+	display: flex;
+	text-align: center;
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+
+}
+
+
+
+
+._modalbox{
+
+    // background-color: $bgc;
+		margin: auto;
+    position: relative;
+    /* center the element */
+		width: 600px;
+    color:white ;
+    text-align: center;
+    font-size: 1.5em;
+		word-wrap: break-word;
+
+
+
+}
+
+._formLogin_submit{
+  margin-top: 50px;
+  background-color:#D35400;
+  padding: 0 16px ;
+  height: 36px;
+  border: 1px solid transparent;
+  -webkit-appearance:none;
+  outline: none;
+
+}
+
+
+
+._formLogin_submit:hover{
+  border-color: #fff;
+}
+
+._loginlink{
+color: #FFF;
+-webkit-appearance:none;
+outline: none;
+
+}
+._loginlink:hover{
+  color: #D35400;
+   text-decoration: none;
+   -webkit-appearance:none;
+   outline: none;
+}
+
+
+/*
+@media screen and (min-width: 500px) {
+    ._modalbox{
+        font-size: 3em;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    ._modalbox{
+        font-size: 4.5em;
+    }
+}
+*/
+
+.field{
+  position: relative;
+  height: 72px;
+  padding: 16px 0 8px 0;
+  width: 350px;
+  margin: auto;
+  color: black;
+
+  text-align: center;
+
+  .field-label{
+    color: #fff;
+    line-height: 16px;
+    font-size: 12px;
+    font-weight: 400;
+
+    display:block;
+    font-size: 16px;
+    position:relative;
+    margin: 0;
+
+    transform: translateY(24px);
+    transition: transform $duration, font-size $duration;
+
+  }
+  .field-input{
+
+    display: block;
+    position: relative;
+    width: 75%;
+    height:32px;
+    margin: auto;
+    padding: 8px 0;
+    text-align: center;
+
+    line-height: 16px;
+    font-family: Roboto;
+    font-size: 22px;
+    color: white;
+    background: transparent;
+    border:none;
+    -webkit-appearance:none;
+    outline: none;
+
+  }
+
+  &::after, &::before{
+    content: '';
+    height: 2px;
+    background-color: #fff;
+    width: 75%;
+    margin: auto;
+    position: absolute;
+    left: 12.5%;
+    bottom: 6px;
+
+  }
+  &::after{
+    background-color: #D35400;
+    transform: scaleX(0);
+    transition: transform $duration;
+
+
+  }
+
+  &.is-focused{
+      .field-label{
+        color:#FFF;
+
+
+      }
+      &::after{
+        transform: scaleX(1);
+      }
+
+  }
+  &.has-label{
+    .field-label{
+      transform: translateY(0) ;
+      font-size:16px;
+      color: $color;
+    }
+
+  }
+
+}

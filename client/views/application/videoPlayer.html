@@ -1,67 +1,64 @@
 <template name="videoPlayer">
 
-<!-- <pre>
+    <!-- <pre>
     State : {{room.state}}  // url : {{room.url}} // video time :  {{room.videoTime}} // serv time : {{ myTime }}
 </pre> -->
 
     <div class="_video_player">
 
-    <div id="player">
+        <div id="player">
+
+        </div>
+
+
+
+        <div class="_controller">
+            <div class="input-range input-progress minimal">
+                <input id="progress-bar" class="" type="range" value="0">
+            </div>
+            <br>
+            <div class="sound-panel">
+                <div class="sound-icon">
+                    <span class=" glyphicon glyphicon-volume-down" aria-hidden="true"></span>
+                </div>
+                <div class="input-range input-sound minimal">
+                    <input id="volume-bar" class="" type="range" value="50">
+                </div>
+                <div class="sound-icon up">
+                    <span class=" glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="buttons-controls">
+                <button id="initRoom" class="player-button" type="button" name="name" value=""><span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></button>
+                <button id="buttonPlay" class="player-button" type="button" name="play"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+                <button id="buttonPause" class="player-button" type="button" name="pause"><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></button>
+                <button id="buttonNext" class="player-button" type="button" name="pause"><span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span></button>
+            </div>
+
+        </div>
+
 
     </div>
+    <div class="_search">
 
+        <form id="addVideoForm" action="index.html" method="post">
+            <input id="nextInput" type="url" class="input-text" name="nextVideo" value="" placeholder="https://www.youtube.com/watch?v...">
+            <button id="buttonAdd" type="submit" class="form-button is-hide">Add </button>
+        </form>
+        <div class="playlist">
+            <h3>Next videos :</h3> {{#each room.nextVideos }}
 
+            <div class="video-list">
+                <img class="video-img" src="http://img.youtube.com/vi/{{id}}/default.jpg" data-video-id="h14wr4pXZFk">
+                <div class="video-info">
+                    <div> {{title}}</div>
+                    <div> {{author}}</div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
 
-   <div class="_controller">
-     <div class="input-range input-progress minimal">
-       <input  id="progress-bar" class="" type="range"  value="0">
-     </div>
-     <br>
-     <div class="sound-panel">
-         <div class="sound-icon">
-           <span class=" glyphicon glyphicon-volume-down" aria-hidden="true"></span>
-         </div>
-         <div class="input-range input-sound minimal">
-           <input  id="volume-bar" class="" type="range"  value="50">
-         </div>
-         <div class="sound-icon up">
-           <span class=" glyphicon glyphicon-volume-up" aria-hidden="true"></span>
-         </div>
-               </div>
-     <div class="buttons-controls">
-       <button id="initRoom" class="player-button" type="button" name="name" value=""><span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></button>
-       <button id="buttonPlay" class="player-button" type="button" name="play"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
-       <button id="buttonPause" class="player-button" type="button" name="pause"><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></button>
-       <button id="buttonNext" class="player-button" type="button" name="pause"><span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span></button>
-     </div>
-
-   </div>
-   
-
-   </div>
-   <div class="_search">
-
-
-       <input id="nextInput" type="text" class="input-text" name="nextVideo" value="" placeholder="https://www.youtube.com/watch?v...">
-       <button id="buttonAdd" class="form-button is-hide">Add to playlist</button>
-       <div class="playlist">
-         <h3>Next videos :</h3>
-         {{#each room.nextVideos }}
-
-         <div class="video-list">
-           <img class="video-img" src="http://img.youtube.com/vi/{{id}}/default.jpg" data-video-id="h14wr4pXZFk">
-           <div class="video-info">
-             <div> {{title}}</div>
-             <div> {{author}}</div>
-           </div>
-         </div>
-
-
-
-         {{/each}}
-       </div>
-
-     </div>
+    </div>
 
 
 

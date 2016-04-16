@@ -1,45 +1,54 @@
 <template name="modalLogin">
 
-  <div class="_modalLogin" id="modalLogin">
+    <div class="_modalLogin" id="modalLogin">
 
-  {{#unless currentUser}}
-      <div class="_modalbox">
+        {{#unless currentUser}}
+        <div class="_modalbox">
 
-      {{#if showModal}}
-      {{> register}}
-      {{else}}
-      {{> login}}
-      {{/if}}
-      </div>
-  {{else}}
+            {{#if showModal}} {{> register}} {{else}} {{> login}} {{/if}}
+        </div>
+        {{else}}
 
-      <div class="_modalbox">
-      <div>
-        <h2>Welcome {{ currentUser.username }}</h2>
-      </div>
-      <br>
-      <button class="_formLogin_submit">Access</button>
+        <div class="_modalbox">
+            <div>
+                <h2>Welcome {{ currentUser.username }}</h2>
+            </div>
+            <br>
+            <button class="_formLogin_submit">Access</button>
+        </div>
+
+
+        {{/unless}}
+
     </div>
-
-
-  {{/unless}}
-
-  </div>
 
 
 </template>
 
 <template name="register">
-  <form>
-    <h2>New account</h2>
-    <div class="_formLogin">
-      <input class="_formLogin_input" type="text" name="username" placeholder="Username" autocomplete="off" /><br />
-      <input class="_formLogin_input" type="email" name="email" placeholder="Email" autocomplete="off" /><br />
-      <input class="_formLogin_input" type="password" name="password" placeholder="Password" autocomplete="off"/><br />
-      <input class="_formLogin_submit" type="submit" value="Create" />
-    </div>
-  </form>
-    <a  id="loginLink" href="#" class="_loginlink"><h3>Already registered</h3></a>
+    <form>
+        <h2>New account</h2>
+        <div class="_formLogin">
+            <div class="field">
+                <label for="username" class="field-label">Username</label>
+                <input class="field-input" type="text" name="username" placeholder="" autocomplete="off" />
+            </div>
+            <br />
+            <div class="field">
+                <label for="email" class="field-label">Email</label>
+                <input class="field-input" type="email" name="email" placeholder="" autocomplete="off" />
+            </div>
+            <br />
+            <div class="field">
+                <label for="password" class="field-label">Password</label>
+                <input class="field-input" type="password" name="password" placeholder="" autocomplete="off" />
+            </div>
+            <br />
+            <input class="_formLogin_submit" type="submit" value="Create" />
+        </div>
+    </form>
+    <br />
+    <a id="loginLink" href="#" class="_loginlink"><h3>Already registered</h3></a>
 </template>
 
 
@@ -48,11 +57,21 @@
 <template name="login">
     <h2>Welcome</h2>
     <form>
-      <div class="_formLogin">
-        <input class="_formLogin_input" type="text" name="username" placeholder="Username" autocomplete="off"/><br />
-        <input class="_formLogin_input" type="password" name="password" placeholder="Password" autocomplete="off"/><br />
-        <input class="_formLogin_submit" type="submit" value="Log in"/>
-      </div>
+        <div class="_formLogin">
+
+            <div class="field">
+                <label for="username" class="field-label">Username</label>
+                <input class="field-input" type="text" name="username" placeholder="" autocomplete="off" />
+            </div>
+
+            <br />
+            <div class="field">
+                <label for="password" class="field-label">Password</label>
+                <input class="field-input" type="password" name="password" placeholder="" autocomplete="off" />
+            </div>
+            <input class="_formLogin_submit" type="submit" value="Log in" />
+        </div>
     </form>
-    <a id="createAccountLink" href="#" class="_loginlink" ><h3>Create a new account</h3></a>
+    <br />
+    <a id="createAccountLink" href="#" class="_loginlink"><h3>Create a new account</h3></a>
 </template>

@@ -1,88 +1,79 @@
-body{
-
-  overflow: hidden;
-	background:  url('images/paris.jpg') no-repeat center fixed;
-  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
-  background-size: cover;
-
+body {
+    overflow: hidden;
+    background: url('images/paris.jpg') no-repeat center fixed;
+    -webkit-background-size: cover;
+    /* pour anciens Chrome et Safari */
+    background-size: cover;
 }
 body:before {
     content: '';
     background: url('images/paris.jpg') no-repeat center;
     -webkit-filter: blur(5px);
-           -moz-filter: blur(5px);
-            -ms-filter: blur(5px);
-             -o-filter: blur(5px);
-                filter: blur(5px);
+    -moz-filter: blur(5px);
+    -ms-filter: blur(5px);
+    -o-filter: blur(5px);
+    filter: blur(5px);
     position: absolute;
-		background-repeat: no-repeat;
-		background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
     top: 0;
-    bottom:0px;
+    bottom: 0px;
     left: 0;
     right: 0;
     z-index: -1;
 }
-
-._body_header{
-  width: 100%;
-  background-color:#402E3D;
-  height: 70px;
-  color:white;
+._body_header {
+    width: 100%;
+    background-color: #402E3D;
+    height: 70px;
+    color: white;
 }
-._headerText{
-  font-size: 20px;
-  padding: 10px;
+._headerText {
+    font-size: 20px;
+    padding: 10px;
 }
-._body_content{
-		position: absolute;
+._body_content {
+    padding-right: 10px;
+    position: absolute;
     top: 80px;
-		bottom: 10px;
-		right: 0px;
-		left:  0px;
+    bottom: 10px;
+    right: 0px;
+    left: 0px;
     display: flex;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     float: left;
-
 }
-
-._content_main{
-		overflow-y: auto;
-	position: relative;
-  float: left;
-  text-align:center;
-  display: flex;
-  flex-flow: wrap;
-  align-items: flex-start;
-  align-content:flex-start;
-	height: 100%;
+._content_main {
+    overflow-y: auto;
+    position: relative;
+    float: left;
+    text-align: center;
+    display: flex;
+    flex-flow: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    height: 100%;
 }
-
-.full{
-  width: 100%;
+.full {
+    width: 100%;
 }
-.notfull{
-  width: 80%;
-
+.notfull {
+    width: 80%;
 }
-
-._workinProgress{
-  background-color: rgba(82,82,82,.20);
-  height: 700px;
-  margin: 20px;
-
-  padding-top: 200px;
-  border-radius: 20px;
+._workinProgress {
+    background-color: rgba(82, 82, 82, .20);
+    height: 700px;
+    margin: 20px;
+    padding-top: 200px;
+    border-radius: 20px;
 }
-
-._arrow{
-	position: absolute;
-	right: 0;
+._arrow {
+    position: absolute;
+    right: 0;
 }
-._arrow:hover{
-	color: white;
+._arrow:hover {
+    color: white;
 }
-
-._researchBox{
-	display: inline-block;
+._researchBox {
+    display: inline-block;
 }
